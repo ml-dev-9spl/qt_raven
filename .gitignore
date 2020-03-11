@@ -1,4 +1,3 @@
-**/build
 **/__pycache__/**
 *.pyc
-.idea/
+.idea/9
