@@ -18,6 +18,11 @@ class CameraWidget(BaseWidget):
     def __init__(self):
         super().__init__()
         self.start_camera()
+        self.destroyed.connect(lambda: self.on_destroy())
+
+    def on_destroy(self):
+        self.camera_thread.disconnect()
+        pass
 
     def init_ui(self):
         layout = QVBoxLayout(self)
@@ -148,4 +153,5 @@ class CameraThread(QtCore.QObject):
         self.current_frame.emit(frame)
 
     def disconnect(self):
+        self.camera.stop_camera()
         pass

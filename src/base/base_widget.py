@@ -25,3 +25,5 @@ class BaseWidget(QWidget):
 
     def on_back_press(self):
         self.on_back_press_listener.emit()
+
+

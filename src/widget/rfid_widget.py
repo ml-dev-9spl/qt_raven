@@ -15,6 +15,11 @@ class RfidWidget(BaseWidget):
     def __init__(self):
         super().__init__()
         self.start_rfid()
+        self.destroyed.connect(lambda: self.on_destroy())
+
+    def on_destroy(self):
+        self.rfid_thread.disconnect()
+        pass
 
     def init_ui(self):
         layout = QVBoxLayout(self)
@@ -73,5 +78,7 @@ class RfidThread(QtCore.QObject):
             
 
     def disconnect(self):
+        if self.timer.isActive():
+            self.timer.stop()
         GPIO.cleanup()
         pass
