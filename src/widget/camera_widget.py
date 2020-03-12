@@ -7,10 +7,14 @@ from PyQt5.QtWidgets import QVBoxLayout, QLabel, QTableWidget, QTableWidgetItem
 from pyzbar import pyzbar
 
 from base.base_widget import BaseWidget
-#from utils.open_cv_camera import OpenCvCamera
-from utils.csi_camera import CsiCamera
+from utils.open_cv_camera import OpenCvCamera
+
+
+# from utils.csi_camera import CsiCamera
 
 class CameraWidget(BaseWidget):
+    BORDER_WIDTH = 2
+
     def __init__(self):
         super().__init__()
         self.start_camera()
@@ -40,14 +44,43 @@ class CameraWidget(BaseWidget):
         self.camera_thread.start_camera()
 
     def update_current_frame(self, frame):
+
+        frame = self.blur(frame)
         frame = self.detect_barcode(frame)
         frame = self.rescale_image(frame)
 
         frame = self._build_image(frame)
         self.image_frame.setPixmap(QPixmap(frame))
 
+    def blur(self, frame):
+        center_frame = frame[self.qr_code_area[0]:self.qr_code_area[1], self.qr_code_area[2]:self.qr_code_area[3]]
+
+        center_frame = cv2.copyMakeBorder(
+            center_frame,
+            self.BORDER_WIDTH,
+            self.BORDER_WIDTH,
+            self.BORDER_WIDTH,
+            self.BORDER_WIDTH,
+            cv2.BORDER_CONSTANT,
+            value=[0, 255, 0]
+        )
+
+        frame = cv2.blur(frame, (20, 20))
+        frame[self.qr_code_area[0] - self.BORDER_WIDTH:self.qr_code_area[1] + self.BORDER_WIDTH
+        , self.qr_code_area[2] - self.BORDER_WIDTH:self.qr_code_area[3] + self.BORDER_WIDTH] = center_frame
+        return frame
+
+    def get_center_area(self, center_point):
+        upper_left = int(center_point[0] - 100), int(center_point[1] - 100)
+        bottom_right = int(center_point[0] + 100), int(center_point[1] + 100)
+
+        return (upper_left, bottom_right)
+
     def update_camera_scale(self, camera_shape):
         self.scale_percent = 35000 / camera_shape[0]
+
+        top_left, bottom_right = self.get_center_area((int(camera_shape[0] / 2), int(camera_shape[1] / 2)))
+        self.qr_code_area = top_left[1], bottom_right[1], top_left[0], bottom_right[0]
 
     def detect_barcode(self, frame):
         barcodes = pyzbar.decode(frame)
@@ -99,7 +132,8 @@ class CameraThread(QtCore.QObject):
 
     def __init__(self):
         super().__init__()
-        self.camera = CsiCamera()
+        self.camera = OpenCvCamera()
+        # self.camera = CsiCamera()
         self.timer = QtCore.QBasicTimer()
 
     def start_camera(self):
