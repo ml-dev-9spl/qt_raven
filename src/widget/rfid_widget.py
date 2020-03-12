@@ -9,9 +9,10 @@ from pyzbar import pyzbar
 from base.base_widget import BaseWidget
 from utils.SimpleMFRC522 import SimpleMFRC522
 from utils.open_cv_camera import OpenCvCamera
-
+import Jetson.GPIO as GPIO
 
 class RfidWidget(BaseWidget):
+    rfid_thread = None
     def __init__(self):
         super().__init__()
         self.start_rfid()
@@ -45,40 +46,29 @@ class RfidWidget(BaseWidget):
         self.add_attendence_item("RFID", str(value))
 
     def add_attendence_item(self, type, value):
-        print(self.attendence_table.rowCount())
         self.attendence_table.insertRow(self.attendence_table.rowCount())
         self.attendence_table.setItem(self.attendence_table.rowCount() - 1, 0, QTableWidgetItem(type))
         self.attendence_table.setItem(self.attendence_table.rowCount() - 1, 1, QTableWidgetItem(value))
         self.attendence_table.scrollToBottom()
 
 
-class RfidThread(QtCore.QObject):
+class RfidThread(QtCore.QThread):
     rfid_value = QtCore.pyqtSignal(int)
 
     def __init__(self):
         super().__init__()
         self.reader = SimpleMFRC522()
-        self.timer = QtCore.QBasicTimer()
 
     def start_rfid(self):
-        self.timer.start(50, self)
+        self.start()
         print("Hold a tag near the reader")
 
-
-    def read(self):
-        return self.reader.read()
-
-    def timerEvent(self, event):
-        if (event.timerId() != self.timer.timerId()):
-            return
-
-        id, text = self.reader.read()
-        if id:
-            self.rfid_value.emit(id)
-            
+    def run(self):
+        while True:
+            id, text = self.reader.read()
+            if id:
+                self.rfid_value.emit(id)
 
     def disconnect(self):
-        if self.timer.isActive():
-            self.timer.stop()
         GPIO.cleanup()
         pass

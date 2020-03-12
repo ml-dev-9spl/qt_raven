@@ -8,9 +8,7 @@ from pyzbar import pyzbar
 
 from base.base_widget import BaseWidget
 from utils.open_cv_camera import OpenCvCamera
-
-
-# from utils.csi_camera import CsiCamera
+from utils.csi_camera import CsiCamera
 
 class CameraWidget(BaseWidget):
     BORDER_WIDTH = 2
@@ -22,7 +20,6 @@ class CameraWidget(BaseWidget):
 
     def on_destroy(self):
         self.camera_thread.disconnect()
-        pass
 
     def init_ui(self):
         layout = QVBoxLayout(self)
@@ -137,8 +134,8 @@ class CameraThread(QtCore.QObject):
 
     def __init__(self):
         super().__init__()
-        self.camera = OpenCvCamera()
-        # self.camera = CsiCamera()
+        # self.camera = OpenCvCamera()
+        self.camera = CsiCamera()
         self.timer = QtCore.QBasicTimer()
 
     def start_camera(self):
@@ -153,5 +150,6 @@ class CameraThread(QtCore.QObject):
         self.current_frame.emit(frame)
 
     def disconnect(self):
+        if self.timer.isActive():
+            self.timer.stop()
         self.camera.stop_camera()
-        pass
