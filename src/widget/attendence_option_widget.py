@@ -6,6 +6,7 @@ from base.base_widget import BaseWidget
 from widget.add_user_widget import AddUserWidget
 from widget.camera_widget import CameraWidget
 from utils.commons import get_icon
+from widget.rfid_widget import RfidWidget
 
 
 class AttendenceOptionWidget(BaseWidget):
@@ -62,10 +63,14 @@ class AttendenceOptionWidget(BaseWidget):
         layout.addLayout(self.item4, 1, 1, 1, 1)
 
         self.btnQrCode.clicked.connect(self.on_qr_code_click)
+        self.btnAddUser.clicked.connect(self.on_rfid_click)
         self.btnAddUser.clicked.connect(self.on_add_user_click)
 
     def on_qr_code_click(self):
         self.add_screen(CameraWidget())
+
+    def on_rfid_click(self):
+        self.add_screen(RfidWidget())
 
     def on_add_user_click(self):
         self.add_screen(AddUserWidget())
