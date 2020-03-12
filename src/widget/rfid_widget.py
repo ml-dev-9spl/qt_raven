@@ -37,7 +37,7 @@ class RfidWidget(BaseWidget):
         self.rfid_thread.start_rfid()
 
     def on_rfid_read(self, value):
-        self.add_attendence_item("RFID", value)
+        self.add_attendence_item("RFID", str(value))
 
     def add_attendence_item(self, type, value):
         print(self.attendence_table.rowCount())
@@ -57,13 +57,10 @@ class RfidThread(QtCore.QObject):
 
     def start_rfid(self):
         self.timer.start(50, self)
-        while True:
-            id, text = self.read()
-            if id:
-                print(id)
+        print("Hold a tag near the reader")
+
 
     def read(self):
-        print("Hold a tag near the reader")
         return self.reader.read()
 
     def timerEvent(self, event):
@@ -73,6 +70,7 @@ class RfidThread(QtCore.QObject):
         id, text = self.reader.read()
         if id:
             self.rfid_value.emit(id)
+            
 
     def disconnect(self):
         GPIO.cleanup()

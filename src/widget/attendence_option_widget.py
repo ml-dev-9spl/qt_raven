@@ -63,7 +63,7 @@ class AttendenceOptionWidget(BaseWidget):
         layout.addLayout(self.item4, 1, 1, 1, 1)
 
         self.btnQrCode.clicked.connect(self.on_qr_code_click)
-        self.btnAddUser.clicked.connect(self.on_rfid_click)
+        self.btnRfid.clicked.connect(self.on_rfid_click)
         self.btnAddUser.clicked.connect(self.on_add_user_click)
 
     def on_qr_code_click(self):
