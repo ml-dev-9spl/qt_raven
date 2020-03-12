@@ -1,4 +1,4 @@
-from src.main.utils.Camera import Camera
+from utils.camera import Camera
 
 
 class OpenCvCamera(Camera):

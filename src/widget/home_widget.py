@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QVBoxLayout, QPushButton
 
-from src.main.python.base.base_widget import BaseWidget
+from base.base_widget import BaseWidget
 
 
 class HomeWidget(BaseWidget):

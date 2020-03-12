@@ -1,7 +1,7 @@
-from PyQt5 import QtWidgets, QtCore
+from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QMessageBox
 
-from src.main.python.base.base_widget import BaseWidget
+from base.base_widget import BaseWidget
 
 
 class AddUserWidget(BaseWidget):

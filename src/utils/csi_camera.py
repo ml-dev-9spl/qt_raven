@@ -1,7 +1,7 @@
-from src.main.utils.Camera import Camera
+from utils import camera
 
 
-class CsiCamera(Camera):
+class CsiCamera(camera):
     def __init__(self):
         super().__init__(self.gstreamer_pipeline())
 

@@ -1,5 +1,4 @@
 from abc import abstractmethod
-from concurrent.futures import thread
 
 from PyQt5 import QtCore
 from PyQt5.QtWidgets import QWidget

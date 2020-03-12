@@ -1,6 +1,0 @@
-{
-    "app_name": "Raven",
-    "author": "9Series Pte. Ltd.",
-    "main_module": "src/main/python/main.py",
-    "version": "0.0.0"
-}

@@ -1,12 +1,11 @@
-from PyQt5 import QtWidgets, QtCore, QtGui
+from PyQt5 import QtWidgets
 from PyQt5.QtCore import QSize
-from PyQt5.QtGui import QIcon, QPixmap
 from PyQt5.QtWidgets import QSizePolicy
 
-from src.main.python.base.base_widget import BaseWidget
-from src.main.python.widget.add_user_widget import AddUserWidget
-from src.main.python.widget.camera_widget import CameraWidget
-from src.main.utils.commons import get_icon
+from base.base_widget import BaseWidget
+from widget.add_user_widget import AddUserWidget
+from widget.camera_widget import CameraWidget
+from utils.commons import get_icon
 
 
 class AttendenceOptionWidget(BaseWidget):
@@ -19,7 +18,7 @@ class AttendenceOptionWidget(BaseWidget):
         self.btnQrCode.setSizePolicy(
             QSizePolicy.Preferred,
             QSizePolicy.Expanding)
-        self.btnQrCode.setIcon(get_icon("../icons/base/qr-code.png"))
+        self.btnQrCode.setIcon(get_icon("base/qr-code.png"))
         self.btnQrCode.setIconSize(QSize(64, 64))
 
         self.item1.addWidget(self.btnQrCode)
@@ -30,7 +29,7 @@ class AttendenceOptionWidget(BaseWidget):
         self.btnRfid.setSizePolicy(
             QSizePolicy.Preferred,
             QSizePolicy.Expanding)
-        self.btnRfid.setIcon(get_icon("../icons/base/rfid.png"))
+        self.btnRfid.setIcon(get_icon("base/rfid.png"))
         self.btnRfid.setIconSize(QSize(64, 64))
 
         self.item2.addWidget(self.btnRfid)
@@ -41,7 +40,7 @@ class AttendenceOptionWidget(BaseWidget):
         self.btnFaceIdentification.setSizePolicy(
             QSizePolicy.Preferred,
             QSizePolicy.Expanding)
-        self.btnFaceIdentification.setIcon(get_icon("../icons/base/face-detection.png"))
+        self.btnFaceIdentification.setIcon(get_icon("base/face-detection.png"))
         self.btnFaceIdentification.setIconSize(QSize(64, 64))
 
         self.item3.addWidget(self.btnFaceIdentification)
@@ -52,7 +51,7 @@ class AttendenceOptionWidget(BaseWidget):
         self.btnAddUser.setSizePolicy(
             QSizePolicy.Preferred,
             QSizePolicy.Expanding)
-        self.btnAddUser.setIcon(get_icon("../icons/base/add_user.png"))
+        self.btnAddUser.setIcon(get_icon("base/add_user.png"))
         self.btnAddUser.setIconSize(QSize(64, 64))
 
         self.item4.addWidget(self.btnAddUser)

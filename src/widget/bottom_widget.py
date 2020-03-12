@@ -3,7 +3,8 @@ from PyQt5.QtCore import QSize
 from PyQt5.QtGui import QIcon, QPixmap
 from PyQt5.QtWidgets import QPushButton, QHBoxLayout
 
-from src.main.python.base.base_widget import BaseWidget
+from base.base_widget import BaseWidget
+from utils.commons import get_icon
 
 
 class BottomWidget(BaseWidget):
@@ -18,25 +19,19 @@ class BottomWidget(BaseWidget):
         btnBack = QPushButton("", self)
         btnBack.setFixedHeight(50)
 
-        iconBack = QIcon()
-        iconBack.addPixmap(QPixmap("../icons/base/return.png"), QIcon.Normal, QIcon.Off)
-        btnBack.setIcon(iconBack)
+        btnBack.setIcon(get_icon("base/return.png"))
         btnBack.setIconSize(QSize(24, 24))
         btnBack.clicked.connect(self.on_back_click)
 
         btnHome = QPushButton("", self)
         btnHome.setFixedHeight(50)
-        iconHome = QIcon()
-        iconHome.addPixmap(QPixmap("../icons/base/home.png"), QIcon.Normal, QIcon.Off)
-        btnHome.setIcon(iconHome)
+        btnHome.setIcon(get_icon("base/home.png"))
         btnHome.setIconSize(QSize(24, 24))
         btnHome.clicked.connect(self.on_home_click)
 
         btnLogout = QPushButton("", self)
         btnLogout.setFixedHeight(50)
-        iconLogout = QIcon()
-        iconLogout.addPixmap(QPixmap("../icons/base/logout.png"), QIcon.Normal, QIcon.Off)
-        btnLogout.setIcon(iconLogout)
+        btnLogout.setIcon(get_icon("base/logout.png"))
         btnLogout.setIconSize(QSize(24, 24))
         btnLogout.clicked.connect(self.on_logout_click)
 

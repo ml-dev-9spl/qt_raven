@@ -6,8 +6,8 @@ from PyQt5.QtGui import QImage, QPixmap
 from PyQt5.QtWidgets import QVBoxLayout, QLabel, QTableWidget, QTableWidgetItem
 from pyzbar import pyzbar
 
-from src.main.python.base.base_widget import BaseWidget
-from src.main.utils.OpenCvCamera import OpenCvCamera
+from base.base_widget import BaseWidget
+from utils.open_cv_camera import OpenCvCamera
 
 
 class CameraWidget(BaseWidget):

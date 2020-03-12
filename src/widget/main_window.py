@@ -1,8 +1,8 @@
 from PyQt5.QtWidgets import QWidget, QVBoxLayout, QStackedWidget
 
-from src.main.python.base import base_widget
-from src.main.python.widget.attendence_option_widget import AttendenceOptionWidget
-from src.main.python.widget.bottom_widget import BottomWidget
+from base import base_widget
+from widget.attendence_option_widget import AttendenceOptionWidget
+from widget.bottom_widget import BottomWidget
 
 
 class MainWindow(QWidget):
