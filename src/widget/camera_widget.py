@@ -7,8 +7,8 @@ from PyQt5.QtWidgets import QVBoxLayout, QLabel, QTableWidget, QTableWidgetItem
 from pyzbar import pyzbar
 
 from base.base_widget import BaseWidget
-from utils.open_cv_camera import OpenCvCamera
-
+#from utils.open_cv_camera import OpenCvCamera
+from utils.csi_camera import CsiCamera
 
 class CameraWidget(BaseWidget):
     def __init__(self):
@@ -99,7 +99,7 @@ class CameraThread(QtCore.QObject):
 
     def __init__(self):
         super().__init__()
-        self.camera = OpenCvCamera()
+        self.camera = CsiCamera()
         self.timer = QtCore.QBasicTimer()
 
     def start_camera(self):
