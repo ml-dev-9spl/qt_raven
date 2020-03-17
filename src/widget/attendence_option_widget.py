@@ -6,8 +6,7 @@ from base.base_widget import BaseWidget
 from widget.add_user_widget import AddUserWidget
 from widget.camera_widget import CameraWidget
 from utils.commons import get_icon
-# from widget.rfid_widget import RfidWidget
-# from widget.rfid_widget import RfidWidget
+from widget.rfid_widget import RfidWidget
 
 
 class AttendenceOptionWidget(BaseWidget):
@@ -71,7 +70,7 @@ class AttendenceOptionWidget(BaseWidget):
         self.add_screen(CameraWidget())
 
     def on_rfid_click(self):
-        # self.add_screen(RfidWidget())
+        self.add_screen(RfidWidget())
         pass
 
     def on_add_user_click(self):

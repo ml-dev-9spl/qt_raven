@@ -2,7 +2,7 @@ import numpy as np
 from PyQt5 import QtCore
 
 from .SimpleMFRC522 import SimpleMFRC522
-import Jetson.GPIO as GPIO
+import RPi.GPIO as GPIO
 
 
 class RfidThread(QtCore.QObject):

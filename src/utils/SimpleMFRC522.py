@@ -1,7 +1,7 @@
 # Code by Simon Monk https://github.com/simonmonk/
 
 from .MFRC522 import MFRC522
-import Jetson.GPIO as GPIO
+import RPi.GPIO as GPIO
   
 class SimpleMFRC522:
 

@@ -9,7 +9,7 @@ from pyzbar import pyzbar
 from base.base_widget import BaseWidget
 from utils.SimpleMFRC522 import SimpleMFRC522
 from utils.open_cv_camera import OpenCvCamera
-import Jetson.GPIO as GPIO
+import RPi.GPIO as GPIO
 
 class RfidWidget(BaseWidget):
     rfid_thread = None
