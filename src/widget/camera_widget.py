@@ -8,7 +8,7 @@ from pyzbar import pyzbar
 
 from base.base_widget import BaseWidget
 from utils.open_cv_camera import OpenCvCamera
-from utils.csi_camera import CsiCamera
+# from utils.csi_camera import CsiCamera
 
 class CameraWidget(BaseWidget):
     BORDER_WIDTH = 2
@@ -134,8 +134,8 @@ class CameraThread(QtCore.QObject):
 
     def __init__(self):
         super().__init__()
-        # self.camera = OpenCvCamera()
-        self.camera = CsiCamera()
+        self.camera = OpenCvCamera()
+        # self.camera = CsiCamera()
         self.timer = QtCore.QBasicTimer()
 
     def start_camera(self):
