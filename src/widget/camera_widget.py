@@ -8,10 +8,13 @@ from pyzbar import pyzbar
 
 from base.base_widget import BaseWidget
 from utils.open_cv_camera import OpenCvCamera
+
+
 # from utils.csi_camera import CsiCamera
 
 class CameraWidget(BaseWidget):
     BORDER_WIDTH = 2
+    BLUR_FRAME_RADIUS = 150
 
     def __init__(self):
         super().__init__()
@@ -73,8 +76,8 @@ class CameraWidget(BaseWidget):
         return frame
 
     def get_center_area(self, center_point):
-        upper_left = int(center_point[0] - 100), int(center_point[1] - 100)
-        bottom_right = int(center_point[0] + 100), int(center_point[1] + 100)
+        upper_left = int(center_point[0] - self.BLUR_FRAME_RADIUS), int(center_point[1] - self.BLUR_FRAME_RADIUS)
+        bottom_right = int(center_point[0] + self.BLUR_FRAME_RADIUS), int(center_point[1] + self.BLUR_FRAME_RADIUS)
 
         return (upper_left, bottom_right)
 
