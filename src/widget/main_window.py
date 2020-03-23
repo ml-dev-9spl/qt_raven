@@ -8,9 +8,10 @@ from widget.bottom_widget import BottomWidget
 class MainWindow(QWidget):
     def __init__(self, title="Raven"):
         super().__init__()
-        self.window_width = 350
-        self.window_height = 600
-        self.setFixedSize(self.window_width, self.window_height)
+        # self.window_width = 350
+        # self.window_height = 600
+        # self.setFixedSize(self.window_width, self.window_height)
+        self.showMaximized()
         self.setWindowTitle(title)
         self.init_ui()
 
