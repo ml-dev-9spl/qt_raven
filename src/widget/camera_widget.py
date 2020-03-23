@@ -3,7 +3,7 @@ import numpy as np
 import pyzbar
 from PyQt5 import QtCore
 from PyQt5.QtGui import QImage, QPixmap
-from PyQt5.QtWidgets import QVBoxLayout, QLabel, QTableWidget, QTableWidgetItem
+from PyQt5.QtWidgets import QHBoxLayout, QLabel, QTableWidget, QTableWidgetItem
 from pyzbar import pyzbar
 
 from base.base_widget import BaseWidget
@@ -22,7 +22,7 @@ class CameraWidget(BaseWidget):
         self.camera_thread.disconnect()
 
     def init_ui(self):
-        layout = QVBoxLayout(self)
+        layout = QHBoxLayout(self)
         layout.setContentsMargins(0, 0, 0, 0)
         layout.setSpacing(0)
 
